@@ -24,3 +24,8 @@ ylabel('x2');
 xlabel('Time');
 grid on;
 
+[K, P, ~] = lqr(A, B, Q, R); % 最適レギュレータのゲイン行列Kを計算
+
+feedback_vector = K';
+disp("フィードバック係数ベクトル:");
+disp(feedback_vector);
