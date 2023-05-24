@@ -4,7 +4,7 @@ B = [0; 1];
 
 % Define the weighting matrices
 Q = [1 0; 0 1000];
-R = 100; % Updated: Use scientific notation for readability
+R = 100;
 
 % Calculate the LQR gain matrix
 [K, S, E] = lqr(A, B, Q, R);
