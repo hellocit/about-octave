@@ -28,6 +28,8 @@ i = 0;
 
 for n = t
 	i = i + 1;
+	u = mod(n,2) >= 1;
+
 	dx = A * x + B * u;
 	x = x + dx * dt;
 	y = C * x;
