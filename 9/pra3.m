@@ -13,8 +13,11 @@ B = [0, 0, (m*l^2+J)/a, -m*l/a];
 C = [1, 0, 0, 1];
 
 Mo = [C; C*A];
+det(Mo)
+Mc = [B A*B];
+det(Mc)
 
-Aa =
+Aa = 
 Ba = 
 Ca =
 D = 
@@ -23,28 +26,21 @@ sys = ss(Aa, Ba, Ca, D);
 P = ;
 L = place(sys, P);
 
-u = 1;
-x = [1; 1];
-xh = [0;0];
-yh = 0;
-t = 0:dt:10;
-x = [0;0];
 dt = 0.1;
+t = 0:dt:10;
 i = 0;
 
 for n = t
 	i = i + 1;
-	dx = 
-	x = 
-	y =
-	x1(i) = x(1);
-	x2(i) = x(2);
-
-	dxh =
-	xh = 
-	yh = 
-	xh1(i) = xh(1);
-	xh2(i) = xh(2);
+	xb =
+	x1(i) = xb(1);
+	x2(i) = xb(2);
+	x3(i) = xb(3);
+	x4(i) = xb(4);
+	xh1(i) = xb(5);
+	xh2(i) = xb(6);
+	xh3(i) = xb(7);
+	xh4(i) = xb(8);
 endfor
 
-plot(t, x1, t, x2, t, xh1, 'o', t, xh2, 'o');
+plot(t, x1, t, x2, t, x3, t, x4, t, xh1, 'o', t, xh2, 'o', t, xh3, 'o', t, xh4, 'o');
