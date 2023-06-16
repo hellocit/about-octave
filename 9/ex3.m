@@ -3,19 +3,19 @@ pkg load control
 
 A = [0 1; -5 -6];
 B = [0; 1];
-C = [0 1];
+C = [0 1];% 状態方程式を定義
 
 Mo = [C; C*A];
-det(Mo);
+obs = det(Mo)#可観測性を判定
 
 Aa = A'
 Ba = C'
 Ca = B'
-D = 0
+D = 0%状態観測器の設計をするために行列を転置
 
-sys = ss(Aa, Ba, Ca, D);
-P = [-3, -4];
-L = place(sys, P)';
+sys = ss(Aa, Ba, Ca, D)%状態空間モデルを生成
+P = [-3, -4]
+L = place(sys, P)'%極配置を行っている
 
 u = 1;
 x = [1; 1];
