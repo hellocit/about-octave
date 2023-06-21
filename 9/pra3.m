@@ -25,41 +25,23 @@ Ba = C'
 Ca = B'
 D = 0
 
-
 [K, P, ~] = lqr(A, B, Q, R);
 Ka = K
 
 x = [0.1; 0.1; 0.1; 0.1];
 xh = [0; 0; 0; 0];
 
-
-
 sys = ss(Aa, Ba, Ca, D);
 Pa = [-1, -2, -3, -4];
 L = place(sys, Pa)'
-
-
-
-Aa
-Ba
-Ca
-x
-xh
-
-test1 = B * Ka
-test2 = L * C
-test3 = A - B * K - L * C
 
 xb0 = [x; xh]
 
 Ab = [A, -B * Ka; L * C, A - B * K - L * C]
 
-
-
 dt = 0.1;
 t = 0:dt:10;
 i = 0;
-
 
 for n = t
        i = i + 1;
