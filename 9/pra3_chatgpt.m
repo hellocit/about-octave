@@ -9,16 +9,18 @@ J = 1/12*m*l^2;
 
 a = (M+m)*(m*l^2+J)-m^2*l^2;
 A = [0, 0, 1, 0; 0, 0, 0, 1; 0, -m^2*l^2*g/a, 0 ,0; 0, (m+M)*m*l*g/a, 0, 0];
-B = [0, 0, (m*l^2+J)/a, -m*l/a]'
-C = [1, 0, 0, 1]
+B = [0, 0, (m*l^2+J)/a, -m*l/a]';
+C = [1, 0, 0, 1];
 
-Mo = [C; C*A; C*A^2; C*A^3];
+Mo = [Ca; Ca*A; Ca*A^2; Ca*A^3];
 det(Mo)
-Mc = [B A*B A^2*B A^3*B];
+Mc = [B, A*B, A^2*B, A^3*B];
 det(Mc)
+
 
 Q = [1 0 0 0;0 1 0 0;0 0 1 0; 0 0 0 1];
 R = 1;
+
 
 Aa = A'
 Ba = C'
@@ -26,19 +28,15 @@ Ca = B'
 D = 0
 
 
-[K, P, ~] = lqr(A, B, Q, R);
-Ka = K
+[K, Pa, ~] = lqr(Aa, Ba, Q, R);
+K = -K'
 
 x = [0.1; 0.1; 0.1; 0.1];
 xh = [0; 0; 0; 0];
 
-
-
 sys = ss(Aa, Ba, Ca, D);
-Pa = [-1, -2, -3, -4];
-L = place(sys, Pa)'
-
-
+P = [-1, -2, -3, -4];
+L = place(sys, P)
 
 Aa
 Ba
@@ -46,15 +44,12 @@ Ca
 x
 xh
 
-test1 = B * Ka
-test2 = L * C
-test3 = A - B * K - L * C
+
 
 xb0 = [x; xh]
+Ba*K
 
-Ab = [A, -B * Ka; L * C, A - B * K - L * C]
-
-
+Ab = [Aa, -Ba*K; L*Ca, Aa-Ba*K-L*Ca]
 
 dt = 0.1;
 t = 0:dt:10;
